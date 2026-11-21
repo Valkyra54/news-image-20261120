@@ -3,7 +3,7 @@
 
 Draws 1024x1024 entry.png with PIL only. Deterministic: no randomness, no
 timestamps, no network. Output dir honours MAKEFUN_OUTPUT_DIR (default /output).
-37 verified stories (RESEARCH-V2.md, cutoff ~12:10 UTC Fri 20 Nov 2026).
+37 verified stories (RESEARCH-V2.md, cutoff ~12:10 UTC Fri 20 Nov 2026; refreshed Sat 21 Nov 2026 per REFRESH-RESULT.md).
 """
 import hashlib
 import os
@@ -182,7 +182,7 @@ LEADS = [
         "art": "kyiv",
         "tag": "WAR • UKRAINE",
         "headline": "RUSSIA'S BIGGEST STRIKE HITS UKRAINE",
-        "chips": ["110+ MISSILES", "~400 DRONES", "8 DEAD"],
+        "chips": ["110+ MISSILES", "~400 DRONES", "9 DEAD"],
         "deck": "Three Kyiv bridges hit, power cut in five districts; Poland scrambles NATO jets.",
         "source": "CNN • THE TIMES • REUTERS • BBC",
     },
@@ -191,7 +191,7 @@ LEADS = [
         "tag": "DISASTER • INDIA",
         "headline": "CYCLONE AKVAN SLAMS ODISHA",
         "chips": ["~370,000 EVACUATED", "70–80 KM/H", "209 MM RAIN"],
-        "deck": "Landfall near Gopalpur; 423 rescue teams out, 69 trains cancelled, no deaths yet.",
+        "deck": "Landfall near Gopalpur; 423 rescue teams out, 69 trains cancelled, no deaths.",
         "source": "IMD • REUTERS",
     },
     {
@@ -233,11 +233,11 @@ def draw_leads(d):
 TILES = [
     {"num": 4, "tag": "MARKETS • TOKYO", "kind": "chart-nikkei",
      "headline": "AI SELL-OFF SLAMS ASIAN MARKETS",
-     "deck": "Nikkei −5.06% to 56,437, a 7-month low.",
+     "deck": "Nikkei −5.06%; US: S&P −3.7%, Nasdaq −5.3%.",
      "source": "REUTERS • WSJ"},
     {"num": 5, "tag": "EUROPE • BRUSSELS",
-     "headline": "BREXIT RESET STALLS ON TUITION FEES",
-     "deck": "Youth mobility agreed, but the EU wants equal fees for its students.",
+     "headline": "BREXIT RESET AGREED — FEES HOLD IT UP",
+     "deck": "Deal agreed Friday; the EU won't implement it until fees are settled.",
      "source": "BBC • THE TIMES"},
     {"num": 6, "tag": "IRAQ • MIDDLE EAST",
      "headline": "IRAQI TROOPS ENTER HEZBOLLAH STRONGHOLD",
@@ -249,19 +249,19 @@ TILES = [
      "source": "REUTERS"},
     {"num": 8, "tag": "LAW • NEW YORK", "stamp": "STILL OUT",
      "headline": "HUAWEI JURY STILL OUT — NO VERDICT",
-     "deck": "Deliberating since Wednesday. No verdict yet — refresh checks the outcome.",
+     "deck": "Deliberating since Wednesday. Still no verdict.",
      "source": "REUTERS"},
-    {"num": 9, "tag": "US POLITICS • WASHINGTON", "stamp": "NOT YET HELD",
-     "headline": "TRUMP PRESSER DUE AT NOON ET",
-     "deck": "Billed “really historic” — on his Asia trip. Not yet held at press time.",
+    {"num": 9, "tag": "US POLITICS • WASHINGTON",
+     "headline": "TRUMP: 'VERY GOOD TALKS' WITH PUTIN",
+     "deck": "90 minutes on his Asia trip; 'very good talks' with Putin on Ukraine.",
      "source": "FOX NEWS • REUTERS"},
     {"num": 10, "tag": "ENERGY • GLOBAL", "kind": "chart-oil",
      "headline": "OIL SLIDES FOR A THIRD WEEK",
-     "deck": "Brent $91.03, WTI $81.81 (09:00 GMT).",
+     "deck": "Brent $92.57, WTI $83.98 (Fri close).",
      "source": "REUTERS"},
     {"num": 11, "tag": "POLAND • NATO",
      "headline": "POLAND SCRAMBLES NATO JETS",
-     "deck": "Kh-101 wreckage found in Nowy Lipowiec; Patriots on alert near Rzeszów.",
+     "deck": "Tusk: 'deliberate provocation'; two missiles fell, Patriots on alert.",
      "source": "REUTERS • CNN"},
     {"num": 12, "tag": "CYBER • BRITAIN",
      "headline": "SECRET OP SAVES FRIDGES FROM HACKERS",
@@ -276,8 +276,8 @@ TILES = [
      "deck": "Daraxonrasib + chemo: 60.7% response in an early trial; “closest to cure”.",
      "source": "BBC"},
     {"num": 16, "tag": "CRYPTO • GLOBAL", "kind": "chart-btc",
-     "headline": "BITCOIN BELOW $62,000",
-     "deck": "BTC $61,754, 4-month low; $582m outflows.",
+     "headline": "BITCOIN BELOW $60,000",
+     "deck": "BTC ~$58,300, lowest since Sep 2024.",
      "source": "FINNHUB • COINDESK"},
 ]
 
@@ -297,17 +297,17 @@ def draw_mini_bars(d, x, y, w, h, items):
 
 
 def draw_btc_line(d, x, y, w, h):
-    """Falling line crossing below a dashed $62,000 line."""
-    # dashed reference line at $62,000
+    """Falling line crossing below a dashed $60,000 line."""
+    # dashed reference line at $60,000
     ry = y + 14
     for dx in range(0, w, 10):
         d.line([(x + dx, ry), (x + dx + 6, ry)], fill=RED, width=2)
-    d.text((x + w - 52, ry - 12), "$62,000", font=F(SANS_B, 9), fill=RED)
+    d.text((x + w - 52, ry - 12), "$60,000", font=F(SANS_B, 9), fill=RED)
     pts = [(0, 4), (0.2, 8), (0.4, 12), (0.55, 20), (0.7, 26), (0.85, 32), (1.0, 38)]
     xy = [(x + int(px * w), y + py) for px, py in pts]
     d.line(xy, fill=NAVY, width=3, joint="curve")
     d.ellipse([xy[-1][0] - 4, xy[-1][1] - 4, xy[-1][0] + 4, xy[-1][1] + 4], fill=RED)
-    d.text((x, y + h - 11), "$61,754", font=F(SANS_B, 10), fill=RED)
+    d.text((x, y + h - 11), "$58,317", font=F(SANS_B, 10), fill=RED)
 
 
 def draw_tile(d, x, y, tile):
@@ -329,7 +329,7 @@ def draw_tile(d, x, y, tile):
     elif kind == "chart-oil":
         text_block(d, x + 8, y + 20, tile["headline"], F(SERIF_B, 13), INK, w - 16, 15, max_lines=1)
         draw_mini_bars(d, x + 8, y + 36, w - 16, 38,
-                       [("BRENT −3.5%/WK", -3.5), ("WTI −6%/WK", -6.0)])
+                       [("BRENT −3.4%/WK", -3.4), ("WTI −5.2%/WK", -5.2)])
         d.text((x + 8, y + 78), tile["deck"], font=F(SANS, 9), fill=INK_SOFT)
         d.text((x + 8, y + 90), tile["source"], font=F(SANS_B, 8), fill=MUTED)
     elif kind == "chart-btc":
@@ -431,14 +431,14 @@ def draw_map(d):
 # ---------------------------------------------------------------- ALSO list
 ALSO = [
     "India v NZ, Test 1 Day 2 — NZ 368, India 159/1 (Jaiswal 85)",
-    "Bitcoin below $62,000 — $61,754, a 4-month low; fear at 12",
+    "Bitcoin below $60,000 — ~$58,300 at Friday's close, lowest since Sep 2024",
     "M5.6 quake hits New Caledonia — no damage, no injuries",
     "Kamala Harris meets Macron in Paris amid 2028 talk",
     "Reuters probe: Epstein, Russia and the oligarchs",
     "Trilateral Peace Declaration: 4 points, no Ukraine deal",
     "ICJ: Myanmar GUILTY of genocide, 9–6 — a first",
-    "Anthropic ANT day one: opened $111.50, closed $97.17 (+17%)",
-    "GTA VI: ~24.58m copies, ~$2.36bn on day one*",
+    "Anthropic ANT: day one +17% to $97.17; day two −8.5% to $88.91",
+    "GTA VI: 32.5m copies, $3.79bn on day one — biggest launch ever",
     "Houthi missile hits PIF Tower in Riyadh; no injuries",
     "Trump pardons Pete Rose posthumously",
     "AMD −7.7% after Hunterbrook report on China",
@@ -449,7 +449,7 @@ ALSO = [
     "EU summons Russian envoy after Kyiv embassy damage",
     "US sanctions Comancheros and 'Ndrangheta",
     "Intuit −10% after hours; sells Mailchimp for $3.68bn",
-    "F1 Las Vegas FP2: Russell fastest, 1:47.272",
+    "F1 Las Vegas qualifying: Antonelli fastest, but Verstappen on pole",
     "Georgia gas blast: 6 dead, apartment block partly collapses",
     "Israel strikes Hezbollah sites in Lebanon's Bekaa",
     "Canada courts AI data centres as US voters say no",
@@ -477,7 +477,7 @@ def draw_footer(d):
     ff = F(SANS, 10)
     d.text((16, 984), "SOURCES: BBC  •  REUTERS  •  CHANNEL NEWS ASIA  •  BLOOMBERG  •  MKT NEWS  •  AP  •  CNN  •  USGS  •  IMD",
            font=ff, fill=INK_SOFT)
-    d.text((16, 998), "*GTA VI figures are Sensor Tower estimates, not official.  •  Compiled Friday 20 November 2026  •  THE FRIDAY GAZETTE",
+    d.text((16, 998), "Compiled Friday 20 November 2026  •  THE FRIDAY GAZETTE",
            font=ff, fill=MUTED)
 
 
